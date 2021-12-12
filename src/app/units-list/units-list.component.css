@@ -1,0 +1,136 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+* {
+  box-sizing: border-box;
+}
+
+a, a:hover, a:visited, a:active {
+  color: inherit;
+  text-decoration: none;
+ }
+
+ button {
+   background-color: #222321;
+   color: #fdc77c;
+ }
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 30%;
+
+  width: 100%;
+  height: 70%;
+}
+
+.container {
+  width: 70%;
+  height: 100%;
+
+  background-color: #8f602e;
+  color: #fdc77c;
+
+  border-radius: 5px;
+  margin-bottom: 50px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px 5px 5px;
+  border-bottom: 1px solid;
+}
+
+.exit {
+  text-decoration: none;
+}
+
+.exit i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #222321;
+  color: #fdc77c;
+
+  border-radius: 50%;
+
+  font-size: 20px;
+}
+
+.exit i:hover {
+  background-color: rgb(56, 55, 55);
+}
+
+.range-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+  width: 17%;
+}
+.checkbox-wrapper {
+  height: 30px;
+}
+.ranges {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.range-element {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+}
+.range-element input {
+  width: 80%;
+  color: #222321;
+  background: url(./../../assets/icon-mini.png);
+}
+
+.dark {
+  background-color: rgb(14, 14, 14);
+  color: white;
+}
+
+.unit-list {
+  display: flex;
+  height: 36px;
+}
+.tag {
+  display: flex;
+  justify-content: center;
+  align-items: center !important;
+}
+
+.id {
+  width: 5%;
+}
+.name {
+  width: 35%;
+  display: flex;
+}
+.age {
+  width: 25%;
+}
+.costs {
+  flex: 1;
+}
+.unit-list div {
+  border: 1px solid;
+}
+
+.header {
+  font-weight: bolder;
+  font-size: 20px;
+}
+.list-wrapper {
+  width: 100%;
+  height: 63%;
+  overflow: scroll;
+}

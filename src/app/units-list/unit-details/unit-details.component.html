@@ -1,0 +1,58 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="top-bar">
+      <p>Unit Details</p>
+      <a routerLink="" class="exit"> <i class="bi bi-x-circle"></i> </a>
+    </div>
+
+    <div class="unit-details">
+      <div class="column first">
+        <p class="row">ID:</p>
+        <p class="row">Name:</p>
+        <p class="row">Min.Required Age:</p>
+        <p class="row">Wood Cost:</p>
+        <p class="row">Food Cost:</p>
+        <p class="row">Gold Cost:</p>
+        <p class="row">Build Time:</p>
+        <p class="row">Reload Time:</p>
+        <p class="row">Hit Points:</p>
+        <p class="row">Attack:</p>
+        <p class="row">Accuracy:</p>
+      </div>
+      <div class="column">
+        <p class="row">{{ unitDetail.units[queryParameter.id - 1].id }}</p>
+        <p class="row">{{ unitDetail.units[queryParameter.id - 1].name }}</p>
+        <p class="row">{{ unitDetail.units[queryParameter.id - 1].age }}</p>
+        <p class="row">
+          {{ unitDetail.units[queryParameter.id - 1].cost?.Wood }}
+        </p>
+        <p class="row">
+          {{ unitDetail.units[queryParameter.id - 1].cost?.Food }}
+        </p>
+        <p class="row">
+          {{ unitDetail.units[queryParameter.id - 1].cost?.Gold }}
+        </p>
+        <p class="row">
+          {{ unitDetail.units[queryParameter.id - 1].build_time }}
+        </p>
+        <p class="row">
+          {{ unitDetail.units[queryParameter.id - 1].reload_time }}
+        </p>
+        <p class="row">
+          {{ unitDetail.units[queryParameter.id - 1].hit_points }}
+        </p>
+        <p class="row">{{ unitDetail.units[queryParameter.id - 1].attack }}</p>
+        <p class="row">
+          {{ unitDetail.units[queryParameter.id - 1].accuracy }}
+        </p>
+      </div>
+
+      <div class="detail-column">
+        <h2>Description :</h2>
+        <p>
+          {{ unitDetail.units[queryParameter.id - 1].description }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

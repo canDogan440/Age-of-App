@@ -1,0 +1,117 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="top-bar">
+      <p>Units Lists</p>
+
+      <a routerLink="" class="exit"> <i class="bi bi-x-circle"></i> </a>
+    </div>
+
+    <ng-container *ngFor="let age of ages">
+      <button (click)="changeAge(age)" [class.dark]="isSelected">
+        {{ age }}
+      </button>
+    </ng-container>
+
+    <div class="range-container">
+      <div class="checkbox-container">
+        <ng-container *ngFor="let cost of costs" class="check-boxes">
+          <div class="checkbox-wrapper">
+            <input
+              type="checkbox"
+              id=" {{ cost }} "
+              name="cost"
+              value=" {{ cost }} "
+              (click)="checkBox(cost)"
+            />
+            <label for=" {{ cost }} "> Eneable {{ cost }} Range : </label><br />
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="ranges">
+        <div class="range-element">
+          <input
+            type="range"
+            class="slider"
+            min="0"
+            max="200"
+            step="1"
+            id="foodrange"
+            #foodRange
+            (change)="onChange($event)"
+            [disabled]="!isFood"
+          />
+          <label for="foodrange"> {{ foodValue }} </label>
+        </div>
+
+        <div class="range-element">
+          <input
+            type="range"
+            class="custom-range"
+            min="0"
+            max="200"
+            step="1"
+            id="woodrange"
+            #woodRange
+            (change)="onChange($event)"
+            [disabled]="!isWood"
+          />
+          <label for="woodrange"> {{ woodValue }} </label>
+        </div>
+
+        <div class="range-element">
+          <input
+            type="range"
+            class="custom-range"
+            min="0"
+            max="200"
+            step="1"
+            id="goldrange"
+            #goldRange
+            (change)="onChange($event)"
+            [disabled]="!isGold"
+          />
+          <label for="goldrange"> {{ goldValue }} </label>
+        </div>
+      </div>
+    </div>
+    <button (click)="resetFilter()">Show All</button>
+
+    <div class="unit-list">
+      <div class="id tag">
+        <p class="header">id</p>
+      </div>
+      <div class="name tag">
+        <p class="header">name</p>
+      </div>
+      <div class="age tag">
+        <p class="header">age</p>
+      </div>
+      <div class="costs tag">
+        <p class="header">costs</p>
+      </div>
+    </div>
+    <div class="list-wrapper">
+      <div class="unit-list" *ngFor="let item of testData; index as i">
+        <div class="id tag">
+          <p>{{ item.id }}</p>
+        </div>
+        <div class="name tag">
+          <p>
+            <a routerLink="/units-detail" [queryParams]="{ id: item.id }">{{
+              item.name
+            }}</a>
+          </p>
+        </div>
+        <div class="age tag">
+          <p>{{ item.age }}</p>
+        </div>
+        <div class="costs tag">
+          <p *ngIf="item?.cost?.Gold">/ Gold : {{ item.cost.Gold }}</p>
+          <p *ngIf="item?.cost?.Food">/ Food : {{ item.cost.Food }}</p>
+          <p *ngIf="item?.cost?.Wood">/ Wood : {{ item.cost.Wood }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
