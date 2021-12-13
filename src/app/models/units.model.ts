@@ -1,4 +1,5 @@
 export interface units {
+  filter(arg0: (item: any) => boolean);
   units?: UnitsEntity[] | null;
 }
 export interface UnitsEntity {

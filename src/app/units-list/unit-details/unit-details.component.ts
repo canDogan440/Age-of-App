@@ -9,23 +9,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./unit-details.component.css'],
 })
 export class UnitDetailsComponent implements OnInit {
-  queryParameter: queryParameter;
+  
+  isQueryParamExist: number = 1;
+
   unitDetail: units;
 
-  constructor(
-    private route: ActivatedRoute,
-    private unitService: UnitsService
-  ) {}
+  constructor(private unitService: UnitsService) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((data: queryParameter) => {
-      this.queryParameter = data;
-      console.log(this.queryParameter);
-    });
-
-    this.unitService.fetchData().subscribe((data: units) => {
-      this.unitDetail = data;
-      console.log(this.unitDetail);
-    });
+    this.unitService
+      .fetchData(this.isQueryParamExist)
+      .subscribe((data: units) => {
+        this.unitDetail = data;
+      });
   }
 }

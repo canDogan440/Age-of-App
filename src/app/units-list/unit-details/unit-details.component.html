@@ -20,37 +20,37 @@
         <p class="row">Accuracy:</p>
       </div>
       <div class="column">
-        <p class="row">{{ unitDetail.units[queryParameter.id - 1].id }}</p>
-        <p class="row">{{ unitDetail.units[queryParameter.id - 1].name }}</p>
-        <p class="row">{{ unitDetail.units[queryParameter.id - 1].age }}</p>
+        <p class="row">{{ unitDetail[0].id }}</p>
+        <p class="row">{{ unitDetail[0].name }}</p>
+        <p class="row">{{ unitDetail[0].age }}</p>
         <p class="row">
-          {{ unitDetail.units[queryParameter.id - 1].cost?.Wood }}
+          {{ unitDetail[0].cost?.Wood }}
         </p>
         <p class="row">
-          {{ unitDetail.units[queryParameter.id - 1].cost?.Food }}
+          {{ unitDetail[0].cost?.Food }}
         </p>
         <p class="row">
-          {{ unitDetail.units[queryParameter.id - 1].cost?.Gold }}
+          {{ unitDetail[0].cost?.Gold }}
         </p>
         <p class="row">
-          {{ unitDetail.units[queryParameter.id - 1].build_time }}
+          {{ unitDetail[0].build_time }}
         </p>
         <p class="row">
-          {{ unitDetail.units[queryParameter.id - 1].reload_time }}
+          {{ unitDetail[0].reload_time }}
         </p>
         <p class="row">
-          {{ unitDetail.units[queryParameter.id - 1].hit_points }}
+          {{ unitDetail[0].hit_points }}
         </p>
-        <p class="row">{{ unitDetail.units[queryParameter.id - 1].attack }}</p>
+        <p class="row">{{ unitDetail[0].attack }}</p>
         <p class="row">
-          {{ unitDetail.units[queryParameter.id - 1].accuracy }}
+          {{ unitDetail[0].accuracy }}
         </p>
       </div>
 
       <div class="detail-column">
         <h2>Description :</h2>
         <p>
-          {{ unitDetail.units[queryParameter.id - 1].description }}
+          {{ unitDetail[0].description }}
         </p>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { UnitsEntity, units } from './../models/units.model';
 import { UnitsService } from 'src/app/services/units.service';
 
 import {
@@ -8,7 +9,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
-import { UnitsEntity } from '../models/units.model';
 
 @Component({
   selector: 'app-units-list',
@@ -16,14 +16,15 @@ import { UnitsEntity } from '../models/units.model';
   styleUrls: ['./units-list.component.css'],
 })
 export class UnitsListComponent implements OnInit, AfterViewInit {
+  
   ages = ['Dark', 'Feudal', 'Castle', 'Imperial'];
   costs = ['Food', 'Wood', 'Gold'];
 
-  unitData: [UnitsEntity];
+  mainUnitsData: units;
+  isAgesButtonsClicked: boolean = false;
+  secondaryUnitsData: [UnitsEntity] | any;
 
-  isSelected: boolean = false;
-
-  testData = [];
+  dataTypeOfFilter: any[] | units;
 
   @ViewChild('foodRange', { static: false }) rangeOfFood: ElementRef;
   @ViewChild('woodRange', { static: false }) rangeOfWood: ElementRef;
@@ -32,51 +33,53 @@ export class UnitsListComponent implements OnInit, AfterViewInit {
   constructor(private unitsService: UnitsService) {}
 
   ngOnInit(): void {
-    this.unitsService.fetchData().subscribe((data: any) => {
-      this.unitData = data.units;
-      this.testData = data.units;
+    this.unitsService.fetchData().subscribe((data: units) => {
+      this.mainUnitsData = data;
+      this.secondaryUnitsData = data;
     });
   }
 
-  changeAge(ages: string) {
-    this.isSelected = !this.isSelected;
+  filterForAges(ages: string) {
+    this.isAgesButtonsClicked = !this.isAgesButtonsClicked;
 
-    if (this.isSelected === true) {
-      let filteredAge = this.testData.filter((item) => {
+    if (this.isAgesButtonsClicked === true) {
+      let filteredAge = this.secondaryUnitsData.filter((item) => {
         return item.age == ages;
       });
       console.log('filtered', filteredAge);
 
-      this.testData = filteredAge;
+      this.secondaryUnitsData = filteredAge;
     } else {
-      this.testData = this.unitData;
+      this.secondaryUnitsData = this.mainUnitsData;
     }
   }
-
+  foodRangeValue: number = 0;
+  woodRangeValue: number = 0;
+  goldRangeValue: number = 0;
   ngAfterViewInit(): void {
     const changeOfFood = fromEvent(this.rangeOfFood.nativeElement, 'change');
     const changeOfWood = fromEvent(this.rangeOfWood.nativeElement, 'change');
     const changeOfGold = fromEvent(this.rangeOfGold.nativeElement, 'change');
 
     changeOfFood.subscribe((data: any) => {
-      this.foodValue = data.currentTarget.value;
+      this.foodRangeValue = data.currentTarget.value;
     });
 
     changeOfWood.subscribe((data: any) => {
-      this.woodValue = data.currentTarget.value;
+      this.woodRangeValue = data.currentTarget.value;
     });
 
     changeOfGold.subscribe((data: any) => {
-      this.goldValue = data.currentTarget.value;
+      this.goldRangeValue = data.currentTarget.value;
     });
   }
 
   resetFilter() {
-    this.foodValue = 0;
-    this.woodValue = 0;
-    this.goldValue = 0;
+    this.foodRangeValue = 0;
+    this.woodRangeValue = 0;
+    this.goldRangeValue = 0;
 
-    this.testData = this.unitData;
+    this.secondaryUnitsData = this.mainUnitsData;
   }
 
   isGold: boolean = false;
@@ -87,97 +90,61 @@ export class UnitsListComponent implements OnInit, AfterViewInit {
     if (cost === 'Wood') {
       this.isWood = !this.isWood;
     } else if (cost === 'Gold') {
-      console.log('çalışıyor');
       this.isGold = !this.isGold;
     } else if (cost === 'Food') {
       this.isFood = !this.isFood;
     }
   }
 
-  foodValue: number = 0;
-  woodValue: number = 0;
-  goldValue: number = 0;
+  onRangeInputChange(event) {
+    this.foodRangeValue =
+      event.target.id == 'foodrange' ? event.target.value : this.foodRangeValue;
 
-  onChange(event) {
-    console.log('event', event);
+    this.woodRangeValue =
+      event.target.id == 'woodrange' ? event.target.value : this.woodRangeValue;
 
-    this.foodValue =
-      event.target.id == 'foodrange' ? event.target.value : this.foodValue;
+    this.goldRangeValue =
+      event.target.id == 'goldrange' ? event.target.value : this.goldRangeValue;
 
-    this.woodValue =
-      event.target.id == 'woodrange' ? event.target.value : this.woodValue;
+    this.unitDataFilter();
+  }
 
-    this.goldValue =
-      event.target.id == 'goldrange' ? event.target.value : this.goldValue;
-
-    if (this.isSelected === true) {
-      const filtered = this.testData.filter((item) => {
-        if (
-          item?.cost?.Wood == undefined &&
-          item?.cost?.Food == undefined &&
-          item?.cost?.Gold == undefined
-        ) {
-          return false;
-        } else if (this.goldValue && this.woodValue && this.foodValue === 200) {
-          return false;
-        } else if (
-          (item?.cost?.Wood == undefined ||
-            item?.cost?.Wood == null ||
-            item?.cost?.Wood >= this.woodValue) &&
-          (item?.cost?.Food == undefined ||
-            item?.cost?.Food == null ||
-            item?.cost?.Food >= this.foodValue) &&
-          (item?.cost?.Gold == undefined ||
-            item?.cost?.Gold == null ||
-            item?.cost?.Gold >= this.goldValue)
-        ) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-
-      console.log('filtrelenmiş', filtered);
-
-      this.testData = [];
-
-      this.testData = filtered;
-
-      console.log('test data ', this.testData);
+  unitDataFilter() {
+    if (this.isAgesButtonsClicked === true) {
+      this.dataTypeOfFilter = this.secondaryUnitsData;
     } else {
-      const filtered = this.unitData.filter((item) => {
-        if (
-          item?.cost?.Wood == undefined &&
-          item?.cost?.Food == undefined &&
-          item?.cost?.Gold == undefined
-        ) {
-          return false;
-        } else if (this.goldValue && this.woodValue && this.foodValue === 200) {
-          return false;
-        } else if (
-          (item?.cost?.Wood == undefined ||
-            item?.cost?.Wood == null ||
-            item?.cost?.Wood >= this.woodValue) &&
-          (item?.cost?.Food == undefined ||
-            item?.cost?.Food == null ||
-            item?.cost?.Food >= this.foodValue) &&
-          (item?.cost?.Gold == undefined ||
-            item?.cost?.Gold == null ||
-            item?.cost?.Gold >= this.goldValue)
-        ) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-
-      console.log('filtrelenmiş', filtered);
-
-      this.testData = [];
-
-      this.testData = filtered;
-
-      console.log('test data ', this.testData);
+      this.dataTypeOfFilter = this.mainUnitsData;
     }
+
+    const filtered = this.dataTypeOfFilter.filter((item) => {
+      if (
+        this.woodRangeValue &&
+        this.foodRangeValue &&
+        this.goldRangeValue === 200
+      ) {
+        return true;
+      } else if (
+        (item?.cost?.Wood == undefined ||
+          item?.cost?.Wood == null ||
+          item?.cost?.Wood <= this.woodRangeValue) &&
+        (item?.cost?.Food == undefined ||
+          item?.cost?.Food == null ||
+          item?.cost?.Food <= this.foodRangeValue) &&
+        (item?.cost?.Gold == undefined ||
+          item?.cost?.Gold == null ||
+          item?.cost?.Gold <= this.goldRangeValue)
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    console.log('filtrelenmiş', filtered);
+
+    this.secondaryUnitsData = [];
+
+    this.secondaryUnitsData = filtered;
+
+    console.log('test data ', this.secondaryUnitsData);
   }
 }

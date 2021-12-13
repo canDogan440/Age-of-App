@@ -7,7 +7,7 @@
     </div>
 
     <ng-container *ngFor="let age of ages">
-      <button (click)="changeAge(age)" [class.dark]="isSelected">
+      <button (click)="filterForAges(age)" [class.dark]="isAgesButtonsClicked">
         {{ age }}
       </button>
     </ng-container>
@@ -38,10 +38,10 @@
             step="1"
             id="foodrange"
             #foodRange
-            (change)="onChange($event)"
+            (change)="onRangeInputChange($event)"
             [disabled]="!isFood"
           />
-          <label for="foodrange"> {{ foodValue }} </label>
+          <label for="foodrange"> {{ foodRangeValue }} </label>
         </div>
 
         <div class="range-element">
@@ -53,10 +53,10 @@
             step="1"
             id="woodrange"
             #woodRange
-            (change)="onChange($event)"
+            (change)="onRangeInputChange($event)"
             [disabled]="!isWood"
           />
-          <label for="woodrange"> {{ woodValue }} </label>
+          <label for="woodrange"> {{ woodRangeValue }} </label>
         </div>
 
         <div class="range-element">
@@ -68,10 +68,10 @@
             step="1"
             id="goldrange"
             #goldRange
-            (change)="onChange($event)"
+            (change)="onRangeInputChange($event)"
             [disabled]="!isGold"
           />
-          <label for="goldrange"> {{ goldValue }} </label>
+          <label for="goldrange"> {{ goldRangeValue }} </label>
         </div>
       </div>
     </div>
@@ -92,7 +92,10 @@
       </div>
     </div>
     <div class="list-wrapper">
-      <div class="unit-list" *ngFor="let item of testData; index as i">
+      <div
+        class="unit-list"
+        *ngFor="let item of secondaryUnitsData; index as i"
+      >
         <div class="id tag">
           <p>{{ item.id }}</p>
         </div>

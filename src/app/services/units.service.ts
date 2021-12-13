@@ -1,22 +1,43 @@
+import { ActivatedRoute } from '@angular/router';
+import { queryParameter, units } from './../models/units.model';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { units } from '../models/units.model';
-import * as data from './../units.json'
+import { observable, Observable } from 'rxjs';
+import * as dataOfJson from '../units.json';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UnitsService {
 
-  unitList:  units = data;
+  converterForJsonData = dataOfJson;
 
-  constructor() { }
+  unitList: units = this.converterForJsonData.units;
 
-  fetchData() {
-    const unitLists = new Observable((observer: any) => {
-      observer.next(this.unitList);
+  queryParameter: number;
+
+  constructor(private route: ActivatedRoute) {}
+
+  getQuerryParameter() {
+    this.route.queryParams.subscribe((data: queryParameter) => {
+      this.queryParameter = Number(data.id);
+    });
+  }
+
+  fetchData(paramter?: number) {
+    const unitData = new Observable((observer: any) => {
+      if (paramter) {
+        this.getQuerryParameter();
+
+        observer.next(
+          this.unitList.filter((item) => {
+            return item.id == this.queryParameter;
+          })
+        );
+      } else {
+        observer.next(this.unitList);
+      }
     });
 
-    return unitLists;
+    return unitData;
   }
 }
