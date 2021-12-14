@@ -45,7 +45,6 @@ export class UnitsListComponent implements OnInit, AfterViewInit {
       let filteredAge = this.secondaryUnitsData.filter((item) => {
         return item.age == ages;
       });
-      console.log('filtered', filteredAge);
 
       this.secondaryUnitsData = filteredAge;
     } else {
@@ -112,7 +111,6 @@ export class UnitsListComponent implements OnInit, AfterViewInit {
   }
 
   unitDataRangeFilter() {
-    
     if (this.isAgesButtonsClicked === true) {
       this.dataTypeOfFilter = this.secondaryUnitsData;
     } else {
@@ -136,12 +134,9 @@ export class UnitsListComponent implements OnInit, AfterViewInit {
         return false;
       }
     });
-    console.log('filtrelenmiş', filtered);
 
     this.secondaryUnitsData = [];
 
     this.secondaryUnitsData = filtered;
-
-    console.log('test data ', this.secondaryUnitsData);
   }
 }

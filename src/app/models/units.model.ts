@@ -1,5 +1,5 @@
 export interface units {
-  filter(arg0: (item: any) => boolean);
+  filter(arg0: (item: UnitsEntity) => boolean);
   units?: UnitsEntity[] | null;
 }
 export interface UnitsEntity {
