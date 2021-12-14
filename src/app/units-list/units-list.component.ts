@@ -56,6 +56,7 @@ export class UnitsListComponent implements OnInit, AfterViewInit {
   foodRangeValue: number = 0;
   woodRangeValue: number = 0;
   goldRangeValue: number = 0;
+
   ngAfterViewInit(): void {
     const changeOfFood = fromEvent(this.rangeOfFood.nativeElement, 'change');
     const changeOfWood = fromEvent(this.rangeOfWood.nativeElement, 'change');
@@ -78,6 +79,8 @@ export class UnitsListComponent implements OnInit, AfterViewInit {
     this.foodRangeValue = 0;
     this.woodRangeValue = 0;
     this.goldRangeValue = 0;
+
+    this.isAgesButtonsClicked = false
 
     this.secondaryUnitsData = this.mainUnitsData;
   }
@@ -106,10 +109,11 @@ export class UnitsListComponent implements OnInit, AfterViewInit {
     this.goldRangeValue =
       event.target.id == 'goldrange' ? event.target.value : this.goldRangeValue;
 
-    this.unitDataFilter();
+    this.unitDataRangeFilter();
   }
 
-  unitDataFilter() {
+  unitDataRangeFilter() {
+
     if (this.isAgesButtonsClicked === true) {
       this.dataTypeOfFilter = this.secondaryUnitsData;
     } else {
