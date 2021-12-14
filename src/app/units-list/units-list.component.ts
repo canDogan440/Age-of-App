@@ -16,7 +16,6 @@ import { fromEvent } from 'rxjs';
   styleUrls: ['./units-list.component.css'],
 })
 export class UnitsListComponent implements OnInit, AfterViewInit {
-  
   ages = ['Dark', 'Feudal', 'Castle', 'Imperial'];
   costs = ['Food', 'Wood', 'Gold'];
 
@@ -80,7 +79,7 @@ export class UnitsListComponent implements OnInit, AfterViewInit {
     this.woodRangeValue = 0;
     this.goldRangeValue = 0;
 
-    this.isAgesButtonsClicked = false
+    this.isAgesButtonsClicked = false;
 
     this.secondaryUnitsData = this.mainUnitsData;
   }
@@ -113,7 +112,7 @@ export class UnitsListComponent implements OnInit, AfterViewInit {
   }
 
   unitDataRangeFilter() {
-
+    
     if (this.isAgesButtonsClicked === true) {
       this.dataTypeOfFilter = this.secondaryUnitsData;
     } else {
@@ -122,12 +121,6 @@ export class UnitsListComponent implements OnInit, AfterViewInit {
 
     const filtered = this.dataTypeOfFilter.filter((item) => {
       if (
-        this.woodRangeValue &&
-        this.foodRangeValue &&
-        this.goldRangeValue === 200
-      ) {
-        return true;
-      } else if (
         (item?.cost?.Wood == undefined ||
           item?.cost?.Wood == null ||
           item?.cost?.Wood <= this.woodRangeValue) &&
