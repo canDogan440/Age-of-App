@@ -70,10 +70,11 @@ export class UnitsService {
     }
   }
 
-  checkBox(cost: string) {
+  checkBoxForFilter(cost: string) {
     this.costsArray.forEach((element) => {
       if (element.cost == cost) {
         element.openButtonForCost = !element.openButtonForCost;
+        element.costValue = 0;
       }
     });
   }
