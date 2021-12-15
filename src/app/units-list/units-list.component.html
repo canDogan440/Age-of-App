@@ -2,80 +2,54 @@
   <div class="container">
     <div class="top-bar">
       <p>Units Lists</p>
-
       <a routerLink="" class="exit"> <i class="bi bi-x-circle"></i> </a>
     </div>
 
     <ng-container *ngFor="let age of ages">
-      <button (click)="filterForAges(age)" [class.dark]="isAgesButtonsClicked">
+      <button  (click)="onAgesButtonClick(age)">
         {{ age }}
       </button>
     </ng-container>
 
     <div class="range-container">
       <div class="checkbox-container">
-        <ng-container *ngFor="let cost of costs" class="check-boxes">
+        <ng-container
+          *ngFor="let cost of unitsService.costsArray"
+          class="check-boxes"
+        >
           <div class="checkbox-wrapper">
             <input
               type="checkbox"
-              id=" {{ cost }} "
+              id="{{ cost }} "
               name="cost"
-              value=" {{ cost }} "
-              (click)="checkBox(cost)"
+              value="{{ cost }} "
+              (click)="unitsService.checkBox(cost.cost)"
             />
-            <label for=" {{ cost }} "> Eneable {{ cost }} Range : </label><br />
+            <label for=" {{ cost.cost }} ">
+              Eneable {{ cost.cost }} Range : </label
+            ><br />
           </div>
         </ng-container>
       </div>
 
       <div class="ranges">
-        <div class="range-element">
+        <div class="range-element" *ngFor="let cost of unitsService.costsArray">
           <input
             type="range"
             class="slider"
             min="0"
             max="200"
             step="1"
-            id="foodrange"
-            #foodRange
-            (change)="onRangeInputChange($event)"
-            [disabled]="!isFood"
+            #{{cost}}
+            id="{{ cost.cost }}"
+            (change)="onRangeFilterChange($event)"
+            [disabled]="!cost.openButtonForCost"
           />
-          <label for="foodrange"> {{ foodRangeValue }} </label>
-        </div>
-
-        <div class="range-element">
-          <input
-            type="range"
-            class="custom-range"
-            min="0"
-            max="200"
-            step="1"
-            id="woodrange"
-            #woodRange
-            (change)="onRangeInputChange($event)"
-            [disabled]="!isWood"
-          />
-          <label for="woodrange"> {{ woodRangeValue }} </label>
-        </div>
-
-        <div class="range-element">
-          <input
-            type="range"
-            class="custom-range"
-            min="0"
-            max="200"
-            step="1"
-            id="goldrange"
-            #goldRange
-            (change)="onRangeInputChange($event)"
-            [disabled]="!isGold"
-          />
-          <label for="goldrange"> {{ goldRangeValue }} </label>
+          <label for="foodrange"> {{ cost.costValue }} </label>
         </div>
       </div>
     </div>
-    <button (click)="resetFilter()">Show All</button>
+    <button (click)="showAllDataButton()">Show All</button>
 
     <div class="unit-list">
       <div class="id tag">

@@ -3,15 +3,18 @@
   box-sizing: border-box;
 }
 
-a, a:hover, a:visited, a:active {
+a,
+a:hover,
+a:visited,
+a:active {
   color: inherit;
   text-decoration: none;
- }
+}
 
- button {
-   background-color: #222321;
-   color: #fdc77c;
- }
+button {
+  background-color: #222321;
+  color: #fdc77c;
+}
 .wrapper {
   display: flex;
   justify-content: center;
@@ -58,7 +61,6 @@ a, a:hover, a:visited, a:active {
 
   font-size: 20px;
 }
-
 .exit i:hover {
   background-color: rgb(56, 55, 55);
 }
@@ -93,9 +95,11 @@ a, a:hover, a:visited, a:active {
   background: url(./../../assets/icon-mini.png);
 }
 
-.dark {
-  background-color: rgb(14, 14, 14);
-  color: white;
+.Dark,
+.Feudal,
+.Castle,
+.Imperial {
+  background-color: rgb(54, 54, 54);
 }
 
 .unit-list {
