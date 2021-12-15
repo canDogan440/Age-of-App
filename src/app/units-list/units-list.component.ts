@@ -1,4 +1,4 @@
-import { UnitsEntity } from './../models/units.model';
+import { UnitsEntity ,units} from './../models/units.model';
 import { UnitsService } from 'src/app/services/units.service';
 import { Component, OnInit } from '@angular/core';
 @Component({
@@ -25,8 +25,8 @@ export class UnitsListComponent implements OnInit {
       openButtonForCost: false,
     },
   ];
-  mainUnitsData: [UnitsEntity];
-  secondaryUnitsData: [UnitsEntity] | any;
+  mainUnitsData: units;
+  secondaryUnitsData: units| any;
   constructor(public unitsService: UnitsService) {}
   ngOnInit(): void {
     this.unitsService.fetchData().subscribe((data: any) => {

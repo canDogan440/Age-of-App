@@ -11,7 +11,7 @@ export class UnitsService {
   converterForJsonData = dataOfJson;
   unitList: units = this.converterForJsonData.units;
   unitListForFilter: units = this.converterForJsonData.units;
-  dataTypeOfFilter: any;
+  dataTypeOfFilter: units;
   isAgesButtonsClicked: boolean = false;
   queryParameter: number;
   costsArray = [
