@@ -71,24 +71,28 @@
         class="unit-list"
         *ngFor="let item of secondaryUnitsData; index as i"
       >
-        <div class="id tag">
-          <p>{{ item.id }}</p>
-        </div>
-        <div class="name tag">
-          <p>
-            <a routerLink="/units-detail" [queryParams]="{ id: item.id }">{{
-              item.name
-            }}</a>
-          </p>
-        </div>
-        <div class="age tag">
-          <p>{{ item.age }}</p>
-        </div>
-        <div class="costs tag">
-          <p *ngIf="item?.cost?.Gold">/ Gold : {{ item.cost.Gold }}</p>
-          <p *ngIf="item?.cost?.Food">/ Food : {{ item.cost.Food }}</p>
-          <p *ngIf="item?.cost?.Wood">/ Wood : {{ item.cost.Wood }}</p>
-        </div>
+        <a
+          routerLink="/units-detail"
+          [queryParams]="{ id: item.id }"
+          class="link-wrapper"
+        >
+          <div class="id tag">
+            <p>{{ item.id }}</p>
+          </div>
+          <div class="name tag">
+            <p>
+              {{ item.name }}
+            </p>
+          </div>
+          <div class="age tag">
+            <p>{{ item.age }}</p>
+          </div>
+          <div class="costs tag">
+            <p *ngIf="item?.cost?.Gold">/ Gold : {{ item.cost.Gold }}</p>
+            <p *ngIf="item?.cost?.Food">/ Food : {{ item.cost.Food }}</p>
+            <p *ngIf="item?.cost?.Wood">/ Wood : {{ item.cost.Wood }}</p>
+          </div>
+        </a>
       </div>
     </div>
   </div>
