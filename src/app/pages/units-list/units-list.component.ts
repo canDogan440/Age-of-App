@@ -1,4 +1,4 @@
-import { UnitsEntity ,units} from './../models/units.model';
+import { units} from '../../models/units.model';
 import { UnitsService } from 'src/app/services/units.service';
 import { Component, OnInit } from '@angular/core';
 @Component({
@@ -8,23 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UnitsListComponent implements OnInit {
   ages = ['Dark', 'Feudal', 'Castle', 'Imperial'];
-  costsArray = [
-    {
-      cost: 'Food',
-      costValue: 0,
-      openButtonForCost: false,
-    },
-    {
-      cost: 'Wood',
-      costValue: 0,
-      openButtonForCost: false,
-    },
-    {
-      cost: 'Gold',
-      costValue: 0,
-      openButtonForCost: false,
-    },
-  ];
   mainUnitsData: units;
   secondaryUnitsData: units| any;
   constructor(public unitsService: UnitsService) {}

@@ -1,4 +1,4 @@
-import { units } from './../../models/units.model';
+import { units } from '../../../models/units.model';
 import { Component, OnInit } from '@angular/core';
 import { UnitsService } from 'src/app/services/units.service';
 

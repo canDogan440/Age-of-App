@@ -78,20 +78,6 @@ export class UnitsService {
       }
     });
   }
-
-  changeOfCostServiceDetecter(changeForFood, changeForWood, changeForGold) {
-    changeForFood.subscribe((data: any) => {
-      this.costsArray[0].costValue = data.currentTarget.value;
-      console.log('hadi', data.data.currentTarget.value);
-    });
-    changeForWood.subscribe((data: any) => {
-      this.costsArray[1].costValue = data.currentTarget.value;
-    });
-    changeForGold.subscribe((data: any) => {
-      this.costsArray[2].costValue = data.currentTarget.value;
-    });
-  }
-
   resetFilter() {
     this.costsArray.forEach((element) => {
       element.costValue = 0;
@@ -117,11 +103,10 @@ export class UnitsService {
   onRangeInputChange(event) {
     this.costsArray.forEach((element) => {
       if (event.target.id == element.cost) {
-        console.log('sen kimsin', (element.costValue = event.target.value));
         element.costValue = event.target.value;
       }
     });
-    console.log('çalışıyorum');
+
     this.unitDataRangeFilter();
   }
   unitDataRangeFilter() {
@@ -152,7 +137,6 @@ export class UnitsService {
           item?.cost?.Food <= this.costsArray[0].costValue &&
           item?.cost?.Wood <= this.costsArray[1].costValue
         ) {
-          console.log('bu mu çalışıyor');
           return true;
         }
         if (
@@ -161,7 +145,6 @@ export class UnitsService {
           item?.cost?.Wood <= this.costsArray[1].costValue &&
           item?.cost?.Gold <= this.costsArray[2].costValue
         ) {
-          console.log('peki burada mı');
           return true;
         }
         if (

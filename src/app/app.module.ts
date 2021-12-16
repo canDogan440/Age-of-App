@@ -9,11 +9,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 
+
 import { FormsModule } from '@angular/forms';
-import { UnitsListComponent } from './units-list/units-list.component';
-import { UnitDetailsComponent } from './units-list/unit-details/unit-details.component';
+import { UnitsListComponent } from './pages/units-list/units-list.component';
+import { UnitDetailsComponent } from './pages/units-list/unit-details/unit-details.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [AppComponent, UnitsListComponent, UnitDetailsComponent],
