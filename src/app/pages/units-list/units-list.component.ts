@@ -12,7 +12,7 @@ export class UnitsListComponent implements OnInit {
   secondaryUnitsData: units| any;
   constructor(public unitsService: UnitsService) {}
   ngOnInit(): void {
-    this.unitsService.fetchData().subscribe((data: any) => {
+    this.unitsService.fetchData().subscribe((data: units) => {
       this.mainUnitsData = data;
       this.secondaryUnitsData = this.mainUnitsData;
     });

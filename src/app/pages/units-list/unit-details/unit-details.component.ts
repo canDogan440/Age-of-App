@@ -8,6 +8,7 @@ import { UnitsService } from 'src/app/services/units.service';
   styleUrls: ['./unit-details.component.css'],
 })
 export class UnitDetailsComponent implements OnInit {
+  
   isQueryParamExist: number = 1;
 
   unitDetail: units;
